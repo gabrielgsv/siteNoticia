@@ -1,0 +1,13 @@
+﻿@model SiteNoticia.Models.Noticia
+
+@{
+    ViewData["Title"] = "Autor | " + Html.DisplayFor(model => model.Titulo);
+}
+
+<h2 class="titulo">@Html.DisplayFor(model => model.Titulo)</h2>
+
+<h5 class="autor">Por @Html.DisplayFor(model => model.Autor)</h5>
+
+<pre>
+@Html.DisplayTextFor(model => model.Texto)
+</pre>

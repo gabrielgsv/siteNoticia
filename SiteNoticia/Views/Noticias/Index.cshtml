@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SiteNoticia.Models.Noticia>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Área do Autor <a class="btn btn-success" asp-action="Create">Criar Nova Noticia</a></h2>
+
+@*Cards de noticias*@
+@foreach (var item in Model)
+{
+    var Base64 = Convert.ToBase64String(item.Imagem);
+    var imagem = string.Format("data:image/png;base64,{0}", Base64);
+
+    <div class="col-md-3">
+        <a asp-action="Details" asp-route-id="@item.Id">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <img class="minimage" src="@Html.Raw(imagem)" asp-append-version="true" />
+                    </div>
+                </div>
+                <div class="panel-body btn-editor">
+                    <h4>@Html.DisplayFor(modelItem => item.Titulo)</h4>
+                    <a class="btn btn-info" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
+                </div>
+            </div>
+        </a>
+    </div>
+}
