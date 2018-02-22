@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SiteNoticia.Data;
 using SiteNoticia.Models;
 using SiteNoticia.Services;
+using ElectronNET.API;
 
 namespace SiteNoticia
 {
@@ -67,6 +68,8 @@ namespace SiteNoticia
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            // Open the Electron-Window here
+            Task.Run(async () => await Electron.WindowManager.CreateWindowAsync());
         }
     }
 }

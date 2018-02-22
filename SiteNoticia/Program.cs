@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElectronNET.API;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace SiteNoticia
 
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseElectron(args)
                 .UseStartup<Startup>()
                 .Build();
     }
