@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
+    <RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <UserSecretsId>aspnet-SiteNoticia-D8204EFF-1C37-41ED-BAE9-B13943C3F1B0</UserSecretsId>
   </PropertyGroup>

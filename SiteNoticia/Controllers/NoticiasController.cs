@@ -28,11 +28,13 @@ namespace SiteNoticia.Controllers
             _context = context;
             _userManager = userManager;
         }
+            
 
         // GET: Noticias
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Noticias.ToListAsync());
+            var usuario = _userManager.GetUserName(User);
+            return View(_context.Noticias.Where(a => a.Autor == usuario));
         }
 
         // GET: Noticias/Details/5
