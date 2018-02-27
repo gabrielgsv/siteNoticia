@@ -33,6 +33,10 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Back">Backend</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Front">Frontend</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="BancoDeDados">Banco de Dados</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Geral">Gerais</a></li>
                     <li><a asp-area="" asp-controller="Noticias" asp-action="Index">Área do Autor</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

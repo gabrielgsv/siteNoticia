@@ -52,7 +52,6 @@ h2.titulo {
 .minimage {
     width: 240px;
     padding: 10px;
-
 }
 
 .minititulo {
@@ -69,14 +68,35 @@ h2.titulo {
     position: relative
 }
 
-.panel-body .image-holder {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
+    .panel-body .image-holder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-size: cover;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
     }
 
+.select-style {
+    border: 1px solid #ccc;
+    width: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #fafafa url("img/icon-select.png") no-repeat 90% 50%;
+}
+
+    .select-style select {
+        padding: 5px 8px;
+        width: 130%;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+    }
+
+        .select-style select:focus {
+            outline: none;
+        }

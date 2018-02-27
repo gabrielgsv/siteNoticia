@@ -11,9 +11,10 @@ using System;
 namespace SiteNoticia.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180226221504_Categoria_Noticia")]
+    partial class Categoria_Noticia
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -191,7 +192,8 @@ namespace SiteNoticia.Data.Migrations
 
                     b.Property<string>("Fonte");
 
-                    b.Property<byte[]>("Imagem");
+                    b.Property<byte[]>("Imagem")
+                        .IsRequired();
 
                     b.Property<string>("Texto")
                         .IsRequired();

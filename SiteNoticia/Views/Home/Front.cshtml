@@ -1,0 +1,29 @@
+﻿@model IEnumerable<SiteNoticia.Models.Noticia>
+@{
+    ViewData["Title"] = "Front";
+}
+
+@foreach (var item in Model)
+{
+    var Base64 = Convert.ToBase64String(item.Imagem);
+    var imagem = string.Format("data:image/png;base64,{0}", Base64);
+
+    <div class="col-md-3">
+        <div class="bloco">
+            <a asp-action="Noticia" asp-route-id="@item.Id">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            <img class="minimage" src="@Html.Raw(imagem)" asp-append-version="true" />
+                        </div>
+                    </div>
+                    <div class="minititulo panel-body">
+                        @Html.DisplayFor(model => item.Titulo)
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+}
+
+

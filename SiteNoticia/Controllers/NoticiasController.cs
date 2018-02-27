@@ -77,7 +77,7 @@ namespace SiteNoticia.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Titulo,Texto,Fonte,Autor,Imagem")] Noticia noticia,List<IFormFile> Imagem)
+        public async Task<IActionResult> Create([Bind("Id,Titulo,Texto,Fonte,Autor,Imagem,Categoria")] Noticia noticia,List<IFormFile> Imagem)
         {
 
             foreach (var item in Imagem)

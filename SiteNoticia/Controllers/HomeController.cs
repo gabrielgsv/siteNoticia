@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using SiteNoticia.Data;
 using System;
 using System.Collections.Generic;
@@ -24,6 +25,26 @@ namespace SiteNoticia.Controllers
             return View(await _context.Noticias.ToListAsync());
         }
 
+        public IActionResult BancoDeDados()
+        {
+            return View(_context.Noticias.Where(a => a.Categoria == "BancoDeDados"));
+        }
+
+        public IActionResult Front()
+        {
+            return View(_context.Noticias.Where(a => a.Categoria == "FrontEnd"));
+        }
+
+        public IActionResult Back()
+        {
+            return View(_context.Noticias.Where(a => a.Categoria == "BackEnd"));
+        }
+
+        public IActionResult Geral()
+        {
+            return View(_context.Noticias.Where(a => a.Categoria == "Geral"));
+        }
+
         public async Task<IActionResult> Noticia(int? id)
         {
             if(id == null)
@@ -39,6 +60,7 @@ namespace SiteNoticia.Controllers
             }
 
             return View(noticia);
-        } 
+        }
+        
     }
 }

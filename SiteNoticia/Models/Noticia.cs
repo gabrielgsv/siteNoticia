@@ -10,15 +10,18 @@ namespace SiteNoticia.Models
     {
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Titulo obrigatório")]
+        [Required(ErrorMessage = "Titulo necessario")]
         public string Titulo { get; set; }
 
-        [Required(ErrorMessage = "Texto obrigatório")]
+        [Required(ErrorMessage = "Texto necessario")]
         [DataType(DataType.MultilineText)]
         public string Texto { get; set; }
         public string Fonte { get; set; }
         public string Autor { get; set; }
 
         public byte[] Imagem { get; set; }
+
+        [Required(ErrorMessage = "Categoria necessario")]
+        public string Categoria { get; set; }
     }
 }

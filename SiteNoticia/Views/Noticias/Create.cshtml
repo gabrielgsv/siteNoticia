@@ -19,7 +19,6 @@
                 <span asp-validation-for="Fonte" class="text-danger"></span>
             </div>
             <div class="form-group">
-
                 <label asp-for="Autor"></label>
                 <input asp-for="Autor" class="form-control" />
             </div>
@@ -28,6 +27,16 @@
                 <input type="file" id="files" asp-for="Imagem" />
                 <span asp-validation-for="Imagem" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <select asp-for="Categoria" class="select-style" size="4">
+                    <option value="BancoDeDados">Banco de Dados</option>
+                    <option value="FrontEnd">FrontEnd</option>
+                    <option value="BackEnd">BackEnd</option>
+                    <option value="Geral">Notícias Gerais</option>
+                </select>
+                <span asp-validation-for="Categoria" class="text-danger"></span>
+            </div>
+
         </div>
         <div class="col-md-6">
             <div class="form-group">
