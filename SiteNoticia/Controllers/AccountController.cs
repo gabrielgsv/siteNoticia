@@ -30,16 +30,18 @@ namespace SiteNoticia.Controllers
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger, RoleManager<IdentityRole> roleManager) // Acesso aos Rolea
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            RoleManager = roleManager;
         }
 
         [TempData]
         public string ErrorMessage { get; set; }
+        private RoleManager<IdentityRole> RoleManager;
 
         [HttpGet]
         [AllowAnonymous]
@@ -206,7 +208,7 @@ namespace SiteNoticia.Controllers
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         public IActionResult Register(string returnUrl = null)
         {
             ViewData["ReturnUrl"] = returnUrl;
@@ -214,7 +216,7 @@ namespace SiteNoticia.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
@@ -225,14 +227,25 @@ namespace SiteNoticia.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    if (!await RoleManager.RoleExistsAsync("Admin"))
+                    {
+                        var users = new IdentityRole("Admin");
+                        var res = await RoleManager.CreateAsync(users);
+                        if (res.Succeeded)
+                        {
+                            await _userManager.AddToRoleAsync(user, "Admin");
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                            _logger.LogInformation("User created a new account with password.");
+                        }
+                    }
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     var callbackUrl = Url.EmailConfirmationLink(user.Id, code, Request.Scheme);
                     await _emailSender.SendEmailConfirmationAsync(model.Email, callbackUrl);
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation("User created a new account with password.");
+
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
